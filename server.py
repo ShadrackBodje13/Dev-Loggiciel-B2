@@ -4,18 +4,18 @@ import sys
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server = 'localhost'
+server = '192.168.1.92' #on pourrait essayer plutard avec serveur en ligne
 port = 5555
 
 server_ip = socket.gethostbyname(server)
 
 try:
-    s.bind((server, port))
+    s.bind((server, port)) #le bind utilise l'adresse du serveur et le port pour la connexion reseau
 
-except socket.error as e:
+except socket.error as e: #si erreur ou exception afficher erreur
     print(str(e))
 
-s.listen(2)
+s.listen(2) #le serveur est en ecoute de la deuxieme connexion
 print("Waiting for a connection")
 
 currentId = "0"
