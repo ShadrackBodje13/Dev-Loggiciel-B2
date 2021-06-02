@@ -7,6 +7,7 @@ from player import *
 from human import *
 from computer import *
 
+
 # Choix de la configuration
 print("1 - Joueur contre joueur\n2 - Joueur contre ordinateur\n3 - Ordinateur contre joueur\n4 - Ordinateur contre ordinateur\n")
 config = 0

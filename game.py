@@ -1,3 +1,4 @@
+from Network import Network
 # Class Game - Gestion du tableau de jeu
 class Game:
 
@@ -7,8 +8,11 @@ class Game:
         self.table = [["*" for x in range(size)] for y in range(size)] #si on a mis game size 3 alors ce seera 3x3 carreaux de jeu
         self.player1 = player1 #joueur 1
         self.player2 = player2 #joueur 2
+        self.net = Network()
+        
 
     # Deroulement de la partie
+    
     def start(self):
         win = "*"
         while win == "*" and not self.full(self.table):
@@ -105,3 +109,26 @@ class Game:
                 if table[x][y] == "*":
                     return False
         return True
+    
+    #Information reseau
+    self.player1, self.player2 = self.parse_data(self.send_data())
+
+
+
+
+    def send_data(self):
+            """
+            Send position to server
+            :return: None
+            """
+            data = str(self.net.id) + ":" + str(self.player1) + "," + str(self.player2)
+            reply = self.net.send(data)
+            return reply
+
+    @staticmethod
+    def parse_data(data):
+        try:
+            d = data.split(":")[1].split(",")
+            return int(d[0]), int(d[1])
+        except:
+            return 0,0
